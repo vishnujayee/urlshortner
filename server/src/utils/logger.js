@@ -1,30 +1,16 @@
-const {winston , transports ,format , createLogger} = require('winston');
+const winston = require('winston');
 
-// const logFormat = winston.format.combine(
-//   winston.format.timestamp(),
-//   winston.format.errors({ stack: true }),
-//   winston.format.json()
-// );
-
-// const logger = winston.createLogger({
-//   level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-//   format: logFormat,
-//   defaultMeta: { service: 'urlshortener-api' },
-//   transports: [
-    // new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
-    // new winston.transports.File({ filename: 'logs/combined.log' }),
-//      new transports.Console(),
-//   ],
-// });
-const logger = createLogger({
-  level: 'silly',
-  format: format.combine(
-    format.timestamp(),
-    format.json()
+const logger = winston.createLogger({
+  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }),
+    winston.format.json()
   ),
+  defaultMeta: { service: 'urlshortener-api' },
   transports: [
-    new transports.Console()
-  ]
+    new winston.transports.Console()
+  ],
 });
 
 if (process.env.NODE_ENV !== 'production') {
@@ -36,4 +22,4 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
-module.exports = { logger }; 
+module.exports = { logger };

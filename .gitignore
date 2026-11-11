@@ -1,0 +1,19 @@
+
+# AI-tool files (never push)
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.db
+.DS_Store
+
+.DS_Store
+**/.DS_Store
+
